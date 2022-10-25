@@ -1,12 +1,11 @@
 import { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
-import { Modal } from './Modal/Modal';
+
 import { Gallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from 'api';
 import { Button } from './Button/Button';
 export class App extends Component {
   state = {
-    showModal: false,
     images: [],
     query: '',
     page: 1,
@@ -37,14 +36,13 @@ export class App extends Component {
   };
 
   render() {
-    const { showModal, images } = this.state;
+    const { images } = this.state;
     return (
-      <>
+      <div style={{ textAlign: 'center' }}>
         <Searchbar onSubmit={this.findImages} />
         <Gallery images={images} />
         {images.length > 0 && <Button onClick={this.onSearchBtnClick} />}
-        {showModal && <Modal />}
-      </>
+      </div>
     );
   }
 }

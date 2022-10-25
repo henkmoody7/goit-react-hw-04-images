@@ -1,12 +1,10 @@
-import { ImageGallery, ImageGalleryItem, Image } from './ImageGallery.styled';
-
+import { ImageGallery } from './ImageGallery.styled';
+import { GalleryItem } from 'ImageGalleryItem/ImageGalleryItem';
 export const Gallery = ({ images }) => {
   return (
     <ImageGallery>
-      {images.map(({ webformatURL, tags, id }) => (
-        <ImageGalleryItem key={id}>
-          <Image src={webformatURL} alt={tags} />
-        </ImageGalleryItem>
+      {images.map(image => (
+        <GalleryItem key={image.id} image={image} />
       ))}
     </ImageGallery>
   );
