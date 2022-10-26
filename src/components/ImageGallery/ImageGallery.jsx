@@ -1,5 +1,5 @@
 import { ImageGallery } from './ImageGallery.styled';
-import { GalleryItem } from 'ImageGalleryItem/ImageGalleryItem';
+import { GalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 export const Gallery = ({ images }) => {
   return (
     <ImageGallery>
