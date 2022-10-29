@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
 import {
   Header,
@@ -8,41 +8,34 @@ import {
   Input,
 } from './Searchbar.styled';
 
-// axios.defaults.baseURL = 'https://pixabay.com/api/';
+export const Searchbar = ({ onSubmit }) => {
+  const [value, setValue] = useState('');
 
-export class Searchbar extends Component {
-  state = {
-    value: '',
+  const onChange = e => {
+    setValue(e.target.value);
   };
 
-  onChange = e => {
-    this.setState({ value: e.target.value });
-  };
-
-  onSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.value);
-    this.setState({ value: '' });
+    onSubmit(value);
+    setValue('');
   };
 
-  render() {
-    const { value } = this.state;
-    return (
-      <Header>
-        <SearchForm onSubmit={this.onSubmit}>
-          <SearchFormBtn type="submit">
-            <ButtonLabel>Search</ButtonLabel>
-          </SearchFormBtn>
+  return (
+    <Header>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchFormBtn type="submit">
+          <ButtonLabel>Search</ButtonLabel>
+        </SearchFormBtn>
 
-          <Input
-            onChange={this.onChange}
-            value={value}
-            type="text"
-            autocomplete="off"
-            placeholder="Search images and photos"
-          />
-        </SearchForm>
-      </Header>
-    );
-  }
-}
+        <Input
+          onChange={onChange}
+          value={value}
+          type="text"
+          autocomplete="off"
+          placeholder="Search images and photos"
+        />
+      </SearchForm>
+    </Header>
+  );
+};
